@@ -1,0 +1,90 @@
+*{
+    font-family: "Roboto";
+}
+.bg_container{
+    background-image:url("https://image.shutterstock.com/image-vector/halftone-triangle-pattern-seamless-geometric-250nw-2120872922.jpg");
+    background-size:cover;
+    min-height: 100vh;
+    min-width:100vw;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color:white;
+    
+    
+}
+
+.main_heading{
+    font-size: 70px;
+    font-weight:bolder;
+   
+}
+.image_text{
+    background-image:url("https://as1.ftcdn.net/v2/jpg/07/98/07/22/1000_F_798072202_Pi1DvYJrfLO4fPG1fsBCNpWegCblwAbi.jpg");
+    background-size:cover;
+    background-clip:text;
+    -webkit-background-clip:text;
+    color: transparent;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+.mytasksContainer{
+    min-width:100vw;
+    background-color:rgb(193, 232, 38);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding:10px;
+    color:black
+}
+
+input{
+    border-radius:20px;
+    
+}
+span{
+    font-weight: lighter;
+    color:white;
+}
+.list_item_style{
+    border-radius:25px;
+    background-color: white;
+}
+
+
+.todo_items_container{
+    margin:0px;
+    padding:0px;
+
+}
+.item-container{
+    width:80vw;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+    margin:20px;
+
+}
+.checkbox-style{
+    width:20px;
+}
+.text-style{
+    text-decoration:line-through;
+}
+.todo-task-container{
+    min-width:70vw;
+    background-color:whitesmoke;
+    border-radius:20px;
+    color:black;
+    padding:15px;
+    padding-right:20px;
+    padding-left:20px;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.listitemsContainer{
+    padding-left:30p
+}
