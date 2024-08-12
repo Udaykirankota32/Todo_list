@@ -1,7 +1,7 @@
 *{
     font-family: "Roboto";
 }
-.bg_container{
+.todo-Home-Page-Container{
     background-image:url("https://image.shutterstock.com/image-vector/halftone-triangle-pattern-seamless-geometric-250nw-2120872922.jpg");
     background-size:cover;
     min-height: 100vh;
@@ -24,14 +24,20 @@
     -webkit-background-clip:text;
     color: transparent;
 }
+.home-box-container{
+    display: flex;
+    flex-direction: column;
+    justify-self: space-between;
+
+}
 .inputContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:center;
 }
-.mytasksContainer{
-    min-width:100vw;
+.todo-list-tasks-container{
+    width:100vw;
     background-color:rgb(193, 232, 38);
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
@@ -53,16 +59,15 @@ span{
 }
 
 
-.todo_items_container{
+.todo-items-container{
     margin:0px;
     padding:0px;
 
 }
 .item-container{
-    width:80vw;
+    width:90%;
     display: flex;
     flex-direction:row;
-    justify-content:space-between;
     align-items: center;
     margin:20px;
 
@@ -74,7 +79,7 @@ span{
     text-decoration:line-through;
 }
 .todo-task-container{
-    min-width:70vw;
+    width:90%;
     background-color:whitesmoke;
     border-radius:20px;
     color:black;
@@ -84,7 +89,30 @@ span{
     display:flex;
     flex-direction:row;
     justify-content:space-between;
+    margin-left:30px;
 }
 .listitemsContainer{
-    padding-left:30p
+    padding-left:30px;
+}
+@media (min-width:768px){
+    .home-box-container{
+        min-width:100vw;
+        display: flex;
+        flex-direction: row;
+
+    
+    }
+    .Cover-page-container{
+        width:50vw;
+        
+    }
+    .todo-list-tasks-container{
+        width: 50vw;
+        min-height:100vh;
+        border-radius: 30px;
+    }
+    
+.checkbox-style{
+    width:35px;
+}
 }
