@@ -1,6 +1,4 @@
 
-
-let userInputEl=document.getElementById("userInput");
 let addBtnEl=document.getElementById("addBtn");
 let todoItemsContainerEl=document.getElementById("todoItemsContainer");
 let saveBtnEl=document.getElementById("SaveBtn");
@@ -13,12 +11,14 @@ function getItemFromLocalStroage(){
         return parsedList
     }
 }
-let tasklist=getItemFromLocalStroage()
+let tasklist=getItemFromLocalStroage();
 
 
 function saveListToLocalStroage(){
     localStorage.setItem("taskList",JSON.stringify(tasklist))
 }
+saveBtnEl.addEventListener("click",saveListToLocalStroage)
+
 function displayTasksItems(eachItem){
     let todoId="todoItem"+eachItem.id;
     let taskId="task"+eachItem.id;
@@ -44,7 +44,7 @@ function displayTasksItems(eachItem){
     checkboxEl.setAttribute("id",checkboxId);
     checkboxEl.classList.add("form-control")
     checkboxContainerEl.appendChild(checkboxEl);
-
+    
 
     let taskContainerEl=document.createElement("div");
     taskContainerEl.classList.add("todo-task-container");
@@ -56,25 +56,41 @@ function displayTasksItems(eachItem){
     contentEl.textContent=eachItem.text;
     taskContainerEl.appendChild(contentEl);
     
-    checkboxEl.addEventListener("click",()=>
-        contentEl.classList.toggle("text-style")
-    )
+    if(eachItem.checkboxState==="checked"){
+        checkboxEl.checked=true;
+        contentEl.classList.add("text-style")
+    }
+    else if(eachItem.checkboxState==="unchecked"){
+        checkboxEl.checked=false;
+        contentEl.classList.remove("text-style")
+    };
+
+
+    checkboxEl.addEventListener("click",()=>{
+        contentEl.classList.toggle("text-style");
+        if(checkboxEl.checked){
+            eachItem.checkboxState="checked";
+        }
+        else{
+            eachItem.checkboxState="unchecked"
+        }
+    }
+    )//adding event to checkboxElement
 
     contentEl.addEventListener("click",(checkboxId,todoId)=>{
         
-        if(checkboxEl.checked!==true){
-            checkboxEl.checked=true;
+        if(checkboxEl.checked){
+            checkboxEl.checked=false;
             contentEl.classList.add("text-style");
-            eachItem.checkboxState="checked";
+            eachItem.checkboxState="unchecked";
         }
         else{
             checkboxEl.checked=false;
             contentEl.classList.remove("text-style");
-            eachItem.checkboxState="unchecked";
+            eachItem.checkboxState="checked";
         }
         
-}
-)
+})//Adding event to taskContainer up on click chekcbox   and content will change
 
     let deleteContainerEl=document.createElement("div");
     deleteContainerEl.setAttribute("id",deleteItemId);
@@ -84,39 +100,53 @@ function displayTasksItems(eachItem){
     deleteItemEl.classList.add("fa-solid","fa-trash");
     deleteContainerEl.appendChild(deleteItemEl);
 
-    deleteContainerEl.addEventListener("click",(todoId,deleteItemId)=>{
+    deleteContainerEl.addEventListener("click",()=>{
+        todoItemsContainerEl;
+        listItemContainerEl;
+        todoId;
         todoItemsContainerEl.removeChild(listItemContainerEl);
+        let removeItemIndex=tasklist.findIndex((eachObj)=>{
+            let todoObjId="todo"+eachObj.id
+            if(todoId===todoObjId){
+                return true;
+            }
+        })
+        tasklist.splice(removeItemIndex,1);
         
-        console.log(tasklist)
+        
+        
 
     })
     
 
 }
 addBtnEl.addEventListener("click",()=>{
-    let newText=userInputEl.value;
-    if(newText!==""){
-    let newId=tasklist.length+1
-    let newTask={
-        text:newText,
-        id:newId
-
+    let userInputEl=document.getElementById("userInput");
+    let newtodoInput=userInputEl.value;
+    let newId=tasklist.length+1;
+    if(newtodoInput===""){
+        alert("Enter valid text"
+        );
+        return;
     }
+        let newTask={
+            text:newtodoInput,
+            id:newId,
+            checkboxState:"unchecked"
+        }
+    
     tasklist.push(newTask);
-    userInputEl.value="";
     displayTasksItems(newTask);
-}
-else {
-    alert("Enter Task");
+    newtodoInput="";
 }
 
-});
+);
 
 
 for(let eachTask of tasklist){
     displayTasksItems(eachTask);
 }
-saveBtnEl.addEventListener("click",saveListToLocalStroage())
+
 
 
 
